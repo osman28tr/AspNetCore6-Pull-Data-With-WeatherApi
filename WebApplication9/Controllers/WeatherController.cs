@@ -10,11 +10,11 @@ namespace WebApplication9.Controllers
     public class WeatherController : Controller
     {
         
-        IGetCurrentWeather _getCurrentWeather;
+        IOpenWeather _openWeather;
         IWeatherService _weatherService;
-        public WeatherController(IGetCurrentWeather getCurrentWeather,IWeatherService weatherService)
+        public WeatherController(IOpenWeather openWeather,IWeatherService weatherService)
         {
-            _getCurrentWeather = getCurrentWeather;
+            _openWeather = openWeather;
             _weatherService = weatherService;
         }
         
