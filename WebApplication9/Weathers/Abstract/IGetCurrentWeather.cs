@@ -2,8 +2,8 @@
 
 namespace WebApplication9.Weathers.Abstract
 {
-    public interface IGetCurrentWeather
+    public interface IGetCurrentWeather<T> where T : class
     {
-        Task<WeatherResponse> GetWeather(string city);
+        Task<T> GetWeather(string city);
     }
 }

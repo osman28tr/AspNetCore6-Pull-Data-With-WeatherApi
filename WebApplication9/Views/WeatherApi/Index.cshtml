@@ -1,0 +1,19 @@
+﻿@model Weather
+@{
+    ViewData["Title"] = "Weather Page";
+}
+
+
+<form asp-controller="WeatherApi" asp-action="Index" method="post">
+    <div class="mb-3">
+        <label for="exampleInputEmail1" class="form-label">Şehir adi:</label>
+        <input type="text" class="form-control" asp-for="CityName">
+    </div>
+    <div class="mb-3 form-check">
+        <input type="checkbox" class="form-check-input" asp-for="IsFahrenheit">
+        <label class="form-check-label" for="exampleCheck1">°F</label>
+    </div>
+    <button type="submit" class="btn btn-primary">Bul</button>
+</form>
+
+<p>@ViewBag.Temp</p>

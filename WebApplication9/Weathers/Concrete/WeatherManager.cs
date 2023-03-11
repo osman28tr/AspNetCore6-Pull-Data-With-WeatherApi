@@ -5,14 +5,14 @@ namespace WebApplication9.Weathers.Concrete
 {
     public class WeatherManager : IWeatherService
     {
-        private readonly IGetCurrentWeather _getCurrentWeather;
-        public WeatherManager(IGetCurrentWeather getCurrentWeather)
+        private readonly IOpenWeather _openWeather;
+        public WeatherManager(IOpenWeather openWeather)
         {
-            _getCurrentWeather = getCurrentWeather;
+            _openWeather = openWeather;
         }
         public async Task<WeatherResponse> GetWeather(string city)
         {
-           return await _getCurrentWeather.GetWeather(city);
+           return await _openWeather.GetWeather(city);
         }
     }
 }

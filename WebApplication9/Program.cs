@@ -1,6 +1,7 @@
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.Extensions.Options;
+using System.ComponentModel;
 using WebApplication9.Controllers;
 using WebApplication9.WeatherApi.Extensions;
 using WebApplication9.Weathers.Abstract;
@@ -14,14 +15,16 @@ builder.Services.AddControllers();
 builder.Services.AddHttpClient();
 
 // Register WeatherClientFactory and IGetCurrentWeather services.
-builder.Services.AddSingleton<WeatherClientFactory>();
-builder.Services.AddSingleton<IWeatherService,WeatherManager>();
-builder.Services.AddTransient<IGetCurrentWeather, OpenWeather>(provider =>
+builder.Services.AddTransient<WeatherClientFactory>();
+//builder.Services.AddSingleton<IWeatherService,WeatherManager>();
+builder.Services.AddSingleton<IWeatherApiService, WeatherApiManager>();
+
+builder.Services.AddTransient<IWeatherApi, WeatherApi>(provider =>
 {
     var factory = provider.GetRequiredService<WeatherClientFactory>();
     var options = provider.GetRequiredService<IOptions<WeatherOptions>>().Value;
-    options.ApiKey = "cbc3a0fb93331cfb4672c89b1d9b55d9";
-    return new OpenWeather(factory.CreateClient(), options);
+    options.ApiKey = "d1398cba8a894feb9f7180821232602";
+    return new WeatherApi(factory.CreateClient(), options);
 });
 var app = builder.Build();
 
